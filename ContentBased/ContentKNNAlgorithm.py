@@ -40,10 +40,11 @@ class ContentKNNAlgorithm(AlgoBase):
             for otherRating in range(thisRating+1, self.trainset.n_items):
                 thisMovieID = int(self.trainset.to_raw_iid(thisRating))
                 otherMovieID = int(self.trainset.to_raw_iid(otherRating))
-                genreSimilarity = self.computeGenreSimilarity(thisMovieID, otherMovieID, genres)
+                #genreSimilarity = self.computeGenreSimilarity(thisMovieID, otherMovieID, genres)
                 yearSimilarity = self.computeYearSimilarity(thisMovieID, otherMovieID, years)
                 #mesSimilarity = self.computeMiseEnSceneSimilarity(thisMovieID, otherMovieID, mes)
-                self.similarities[thisRating, otherRating] = genreSimilarity * yearSimilarity
+                #self.similarities[thisRating, otherRating] = genreSimilarity * yearSimilarity * mesSimilarity
+                self.similarities[thisRating, otherRating] = yearSimilarity
                 self.similarities[otherRating, thisRating] = self.similarities[thisRating, otherRating]
                 
         print("...done.")
